@@ -1,0 +1,24 @@
+From d64caf9fac70c1c13cf8c161a5594cb43b478fb3 Mon Sep 17 00:00:00 2001
+From: apokhyla <anton.pokhyla@mongodb.com>
+Date: Thu, 4 Dec 2025 14:27:44 +0100
+Subject: [PATCH] Include MongoCLI version in mongodb.yml
+
+---
+ evergreen/mongodb.yml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/evergreen/mongodb.yml b/evergreen/mongodb.yml
+index 152784a59409..d6ef78a17ba1 100644
+--- a/evergreen/mongodb.yml
++++ b/evergreen/mongodb.yml
+@@ -10,5 +10,7 @@ parameters:
+     value: "0.12.8"  # also update WORKSPACE
+   - key: mongosync_version
+     value: "1.7.3"  # also update WORKSPACE
++  - key: mongocli_version
++    value: "1.17.0"
+   - key: mongosh_version
+     value: "1.10.6"
+-- 
+2.50.1
+

@@ -1,0 +1,55 @@
+my_transformations = [
+
+    core.replace(before = "MMS_HOME", after = "OM_HOME"),
+
+    patch.apply(
+        patches = [
+            "patches/fix-evergreen-mongodb.yml-00.patch",
+            "patches/fix-evergreen-mongodb.yml-01.patch"
+        ]
+    )
+]
+
+core.workflow(
+
+    name = "sync",
+
+    origin = git.github_origin(
+        url = "git@github.com:apokhyla/copybara-test-1.git",
+        ref = "main"
+    ),
+
+    destination = git.github_destination(
+        url = "git@github.com:apokhyla/copybara-test-2.git",
+        fetch = "main",
+        push = "main"
+    ),
+
+    mode = "ITERATIVE",
+
+    authoring = authoring.pass_thru("Anton Pokhyla <anton.pokhyla@mongodb.com>"),
+
+    transformations = my_transformations,
+)
+
+core.workflow(
+
+    name = "backport",
+
+    origin = git.github_origin(
+        url = "git@github.com:apokhyla/copybara-test-2.git",
+        ref = "main"
+    ),
+
+    destination = git.github_destination(
+        url = "git@github.com:apokhyla/copybara-test-1.git",
+        fetch = "main",
+        push = "main"
+    ),
+
+    mode = "ITERATIVE",
+
+    authoring = authoring.pass_thru("Anton Pokhyla <anton.pokhyla@mongodb.com>"),
+
+    transformations = core.reverse(my_transformations),
+)
