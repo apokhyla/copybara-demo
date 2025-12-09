@@ -1,3 +1,7 @@
+<h2>Prerequisites</h2>
+
+Copybata setup steps and documentation: https://github.com/google/copybara
+
 <h2>How to run</h2>
 
 Sync (source -> destination):
