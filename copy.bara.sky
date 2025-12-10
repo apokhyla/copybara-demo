@@ -1,4 +1,4 @@
-my_transformations = [
+required_transformations = [
 
     core.replace(before = "MMS_HOME", after = "OM_HOME"),
 
@@ -29,7 +29,7 @@ core.workflow(
 
     authoring = authoring.pass_thru("Anton Pokhyla <anton.pokhyla@mongodb.com>"),
 
-    transformations = my_transformations,
+    transformations = required_transformations,
 )
 
 core.workflow(
@@ -51,5 +51,5 @@ core.workflow(
 
     authoring = authoring.pass_thru("Anton Pokhyla <anton.pokhyla@mongodb.com>"),
 
-    transformations = core.reverse(my_transformations),
+    transformations = core.reverse(required_transformations),
 )
